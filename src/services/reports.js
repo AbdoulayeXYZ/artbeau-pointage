@@ -1,8 +1,8 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 class ReportsService {
   constructor() {
-    this.baseURL = `${API_BASE_URL}/reports`;
+    this.baseURL = `${API_BASE_URL}/api/reports`;
   }
 
   // Récupérer les données de rapport avec filtres
@@ -22,14 +22,14 @@ class ReportsService {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('artbeau_token')}`
         }
       });
 
       if (!response.ok) {
         if (response.status === 401) {
           // Token invalide ou expiré, rediriger vers login
-          localStorage.removeItem('token');
+          localStorage.removeItem('artbeau_token');
           window.location.href = '/login';
           throw new Error('Session expirée. Veuillez vous reconnecter.');
         }
@@ -58,7 +58,7 @@ class ReportsService {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('artbeau_token')}`
         }
       });
 
@@ -99,7 +99,7 @@ class ReportsService {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('artbeau_token')}`
         }
       });
 
@@ -140,7 +140,7 @@ class ReportsService {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('artbeau_token')}`
         }
       });
 
@@ -169,10 +169,10 @@ class ReportsService {
   // Récupérer la liste des employés pour les filtres
   async getEmployees() {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/users`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/users`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('artbeau_token')}`
         }
       });
 
@@ -191,10 +191,10 @@ class ReportsService {
   // Récupérer la liste des postes pour les filtres
   async getWorkstations() {
     try {
-      const response = await fetch(`${API_BASE_URL}/workstations`, {
+      const response = await fetch(`${API_BASE_URL}/api/workstations`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('artbeau_token')}`
         }
       });
 
