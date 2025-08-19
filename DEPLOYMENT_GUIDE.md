@@ -58,9 +58,9 @@ Copiez le script `server-setup.sh` sur votre serveur et exécutez-le :
 
 ```bash
 # Sur le serveur
-curl -fsSL https://raw.githubusercontent.com/your-repo/server-setup.sh | bash
+curl -fsSL https://raw.githubusercontent.com/AbdoulayeXYZ/artbeau-pointage/main/server-setup.sh | bash
 # OU
-wget -O - server-setup.sh | bash
+wget -O - https://raw.githubusercontent.com/AbdoulayeXYZ/artbeau-pointage/main/server-setup.sh | bash
 ```
 
 **Ou manuellement :**
