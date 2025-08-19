@@ -27,6 +27,12 @@ class ReportsService {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          // Token invalide ou expiré, rediriger vers login
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+          throw new Error('Session expirée. Veuillez vous reconnecter.');
+        }
         throw new Error(`Erreur HTTP: ${response.status}`);
       }
 
