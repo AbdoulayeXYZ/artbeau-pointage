@@ -1,0 +1,19 @@
+version: "2"
+tunnels:
+  backend:
+    addr: 3001
+    proto: http
+    inspect: false
+  
+  frontend:
+    addr: 4028
+    proto: http
+    inspect: false
+
+# Configuration générale
+log_level: info
+log_format: logfmt
+log: /tmp/ngrok.log
+
+# Configuration du tableau de bord ngrok
+web_addr: localhost:4040

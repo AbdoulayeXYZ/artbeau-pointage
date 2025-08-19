@@ -1,0 +1,11 @@
+version: "2"
+authtoken_from_env: true
+tunnels:
+  backend:
+    addr: http://localhost:3001
+    proto: http
+    name: "artbeau-backend"
+  frontend:
+    addr: http://localhost:8080
+    proto: http
+    name: "artbeau-frontend"

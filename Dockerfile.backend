@@ -1,0 +1,35 @@
+# Backend Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Installer les dépendances système nécessaires pour SQLite
+RUN apk add --no-cache python3 make g++ sqlite
+
+# Copier package.json et package-lock.json
+COPY backend/package*.json ./
+
+# Installer les dépendances
+RUN npm ci --only=production
+
+# Copier le code source
+COPY backend/ ./
+
+# Créer le répertoire pour la base de données
+RUN mkdir -p /app/data
+
+# Exposer le port
+EXPOSE 3001
+
+# Variables d'environnement par défaut
+ENV NODE_ENV=production
+ENV PORT=3001
+
+# Créer un utilisateur non-root
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S artbeau -u 1001
+RUN chown -R artbeau:nodejs /app
+USER artbeau
+
+# Commande de démarrage
+CMD ["node", "server.js"]
