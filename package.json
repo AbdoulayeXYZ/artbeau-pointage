@@ -61,7 +61,16 @@
   "scripts": {
     "start": "vite",
     "build": "vite build --sourcemap",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "./deploy.sh",
+    "deploy:server": "./deploy-to-server.sh",
+    "backup": "node backend/scripts/backup.js",
+    "monitor": "./scripts/monitor.sh",
+    "docker:build": "docker-compose -f docker-compose.prod.yml build",
+    "docker:up": "docker-compose -f docker-compose.prod.yml up -d",
+    "docker:down": "docker-compose -f docker-compose.prod.yml down",
+    "docker:logs": "docker-compose -f docker-compose.prod.yml logs -f",
+    "docker:restart": "docker-compose -f docker-compose.prod.yml restart"
   },
   "eslintConfig": {
     "extends": [
