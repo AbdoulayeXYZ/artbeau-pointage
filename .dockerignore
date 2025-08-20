@@ -1,0 +1,10 @@
+node_modules
+.git
+*.log
+backend/data/*.db
+dist
+build
+ssl-certs
+deploy-ssl.sh
+test-ssl-deployment.sh
+SSL_DEPLOYMENT_GUIDE.md

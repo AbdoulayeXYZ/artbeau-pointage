@@ -1,8 +1,13 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 class ReportsService {
   constructor() {
-    this.baseURL = `${API_BASE_URL}/reports`;
+    // Ensure we don't have double /api
+    const baseURL = API_BASE_URL.endsWith('/api') 
+      ? API_BASE_URL 
+      : `${API_BASE_URL}/api`;
+    
+    this.baseURL = `${baseURL}/reports`;
   }
 
   // Récupérer les données de rapport avec filtres

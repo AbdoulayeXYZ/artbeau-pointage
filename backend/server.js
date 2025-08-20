@@ -37,9 +37,6 @@ class ArtBeauPointageServer {
   }
 
   setupMiddleware() {
-    // Configuration proxy pour ngrok
-    this.app.set('trust proxy', true);
-    
     // Sécurité
     this.app.use(helmet({
       crossOriginResourcePolicy: { policy: "cross-origin" },
@@ -54,7 +51,7 @@ class ArtBeauPointageServer {
       allowedHeaders: ['Content-Type', 'Authorization']
     }));
 
-    // Rate limiting global - Configuration compatible avec ngrok
+    // Rate limiting global
     const globalLimiter = rateLimit({
       windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
       max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
@@ -64,17 +61,7 @@ class ArtBeauPointageServer {
         code: 'RATE_LIMIT_EXCEEDED'
       },
       standardHeaders: true,
-      legacyHeaders: false,
-      // Configuration spéciale pour les proxies comme ngrok
-      keyGenerator: (req) => {
-        // En développement avec ngrok, utiliser une clé fixe pour éviter les problèmes
-        if (process.env.NODE_ENV === 'development') {
-          return req.ip || 'dev-user';
-        }
-        return req.ip;
-      },
-      // Ignorer les avertissements de trust proxy en développement
-      validate: process.env.NODE_ENV !== 'development'
+      legacyHeaders: false
     });
     this.app.use(globalLimiter);
 

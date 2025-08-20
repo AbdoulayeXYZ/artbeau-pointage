@@ -249,10 +249,10 @@ const LoginPage = () => {
           transition={{ delay: 0.4 }}
           className="text-center mt-8 text-sm text-gray-500"
         >
-          <p>© 2025 Art'Beau-Pointage - Système de pointage moderne</p>
-          <p className="mt-1">
+          <p>© 2025 Art'Beau-Rescence - Système de pointage moderne</p>
+          {/* <p className="mt-1">
             Mot de passe par défaut: <code className="bg-gray-100 px-1 rounded">artbeaurescence</code>
-          </p>
+          </p> */}
         </motion.div>
       </motion.div>
     </div>

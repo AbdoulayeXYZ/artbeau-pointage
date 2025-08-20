@@ -5,8 +5,13 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 class TimeTrackingService {
   constructor() {
+    // Ensure we don't have double /api
+    const baseURL = API_BASE_URL.endsWith('/api') 
+      ? API_BASE_URL 
+      : `${API_BASE_URL}/api`;
+    
     this.api = axios.create({
-      baseURL: `${API_BASE_URL}/api`,
+      baseURL,
       timeout: 15000,
       headers: {
         'Content-Type': 'application/json'
